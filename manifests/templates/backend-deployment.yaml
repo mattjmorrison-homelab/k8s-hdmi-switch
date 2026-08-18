@@ -18,6 +18,11 @@ spec:
         - name: hdmi-switch-zot-pull-secret
       nodeSelector:
         kubernetes.io/hostname: pi5-8
+      tolerations:
+        - key: dedicated
+          operator: Equal
+          value: pi
+          effect: NoSchedule
       containers:
         - name: hdmi-switch-backend
           image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
