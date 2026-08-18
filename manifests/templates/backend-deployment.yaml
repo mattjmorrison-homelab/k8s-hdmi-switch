@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hdmi-switch-backend
+  namespace: hdmi-switch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hdmi-switch-backend
+  template:
+    metadata:
+      labels:
+        app: hdmi-switch-backend
+    spec:
+      serviceAccountName: hdmi-switch
+      imagePullSecrets:
+        - name: hdmi-switch-zot-pull-secret
+      nodeSelector:
+        kubernetes.io/hostname: pi5-8
+      containers:
+        - name: hdmi-switch-backend
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          ports:
+            - containerPort: 8000
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: switch-device
+              mountPath: /dev/ttyUSB0
+      volumes:
+        - name: switch-device
+          hostPath:
+            path: /dev/ttyUSB0
+            type: CharDevice

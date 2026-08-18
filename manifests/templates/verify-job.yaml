@@ -15,6 +15,11 @@ spec:
         - name: verify
           image: "{{ .Values.verify.image.repository }}@{{ .Values.verify.image.digest }}"
           command: ["/bin/sh", "/scripts/verify.sh"]
+          env:
+            - name: EXPECTED_BACKEND_COMMIT_SHA
+              value: {{ .Values.backend.image.tag | quote }}
+            - name: EXPECTED_UI_COMMIT_SHA
+              value: {{ .Values.ui.image.tag | quote }}
           volumeMounts:
             - name: script
               mountPath: /scripts

@@ -13,6 +13,16 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: hdmi-switch
+                name: hdmi-switch-ui
+                port:
+                  number: 80
+    - host: graph-hdmi-switch.morrisons.site
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hdmi-switch-backend
                 port:
                   number: 8000

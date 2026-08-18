@@ -1,6 +1,12 @@
-image:
-  repository: registry.morrisons.site/homelab-hdmi-switch
-  tag: v0.0.0
+backend:
+  image:
+    repository: registry.morrisons.site/homelab-hdmi-switch
+    tag: v0.0.0
+
+ui:
+  image:
+    repository: registry.morrisons.site/ui-hdmi-switch
+    tag: v0.0.0
 
 verify:
   image:
