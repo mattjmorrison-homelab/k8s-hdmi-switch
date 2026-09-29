@@ -22,3 +22,4 @@ metadata:
   description: PWA remote control for the physical TESmart 5-port HDMI switch
 spec:
   owner: mattjmorrison-homelab
+  domain: application
