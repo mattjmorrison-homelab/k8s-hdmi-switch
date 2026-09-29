@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: k8s-hdmi-switch
+  annotations:
+    github.com/project-slug: mattjmorrison-homelab/k8s-hdmi-switch
+spec:
+  type: deployment-config
+  owner: mattjmorrison-homelab
+  lifecycle: experimental
+  system: hdmi-switch
+  dependsOn:
+    - component:ui-hdmi-switch
+    - component:graph-hdmi-switch
+    - resource:k8s-openbao
+    - resource:k8s-zot
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: hdmi-switch
+  description: PWA remote control for the physical TESmart 5-port HDMI switch
+spec:
+  owner: mattjmorrison-homelab
